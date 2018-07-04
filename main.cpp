@@ -1,4 +1,5 @@
 #include <SFML/Graphics.hpp>
+#include "primary_assets.h"
 #include "game_assets.h"
 #include <iostream>
 using namespace std;
@@ -12,22 +13,28 @@ void handleGameLogic();
 void handleGameEvents();
 void handleGameView();
 
-Game_Assets* gameAssets = new Game_Assets();
+// Main window
 sf::RenderWindow* window;
-Game_Assets::Game_State currentState = Game_Assets::Game_State::IN_GAME;
+
+// Load assets
+Primary_Assets* primaryAssets;
+Game_Assets* gameAssets;
+
+// Set game state
+Primary_Assets::Game_State currentState = Primary_Assets::Game_State::IN_GAME;
 
 // Handle everything in the game
 void handleAll()
 {
 	switch(currentState)
 	{
-		case Game_Assets::Game_State::IN_MAIN_MENU:
+		case Primary_Assets::Game_State::IN_MAIN_MENU:
 			handleMainMenuEvents();
 			handleMainMenuLogic();
 			handleMainMenuView();
 			break;
 
-		case Game_Assets::Game_State::IN_GAME:
+		case Primary_Assets::Game_State::IN_GAME:
 			  handleGameEvents();
 			  handleGameLogic();
 			  handleGameView();
@@ -92,15 +99,24 @@ void handleMiscEvents()
 
 int main()
 {
-	int wWidth = gameAssets->windowWidth;
-	int wHeight = gameAssets->windowHeight;
-	std::string wName = gameAssets->windowName;	
+	// Load primary assets
+	primaryAssets = new Primary_Assets();
+
+	// Load window
+	int wWidth = primaryAssets->windowWidth;
+	int wHeight = primaryAssets->windowHeight;
+	std::string wName = primaryAssets->windowName;	
 	window = new sf::RenderWindow(sf::VideoMode(wWidth, wHeight), wName);
 
+	// Load other assets
+	gameAssets = new Game_Assets(window);
+	
+	// Set clock interval
 	sf::Clock clock;
 	float timer = 0;
-	float spf = 1.0f / gameAssets->fps;
-
+	float spf = 1.0f / primaryAssets->fps;
+	
+	// Run window
 	while(window->isOpen())
 	{
 		handleMiscEvents();

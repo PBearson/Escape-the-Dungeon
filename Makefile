@@ -6,8 +6,11 @@ main.o: main.cpp
 game_assets.o: game_assets.cpp
 	g++ -c game_assets.cpp
 
-escape_the_dungeon: main.o game_assets.o
-	g++ main.o game_assets.o -o escape_the_dungeon -lsfml-graphics -lsfml-window -lsfml-system
+primary_assets.o: primary_assets.cpp
+	g++ -c primary_assets.cpp
+
+escape_the_dungeon: main.o primary_assets.o game_assets.o
+	g++ main.o primary_assets.o game_assets.o -o escape_the_dungeon -lsfml-graphics -lsfml-window -lsfml-system
 
 clean: 
 	rm -f *.o
