@@ -13,6 +13,7 @@ class Game_Assets
 		sf::RectangleShape* wallBottom;
 		sf::RectangleShape* wallBar1;
 		sf::RectangleShape* wallBar2;
+		sf::RectangleShape* wallBar3;
 
 		Game_Assets(sf::RenderWindow*);
 };

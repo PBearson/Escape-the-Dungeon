@@ -83,8 +83,12 @@ void handleGameView()
 	window->draw(*(gameAssets->background));
 	window->draw(*(gameAssets->ground));
 	window->draw(*(gameAssets->wallLeft));
+	window->draw(*(gameAssets->wallRight));
+	window->draw(*(gameAssets->wallTop));
+	window->draw(*(gameAssets->wallBottom));
 	window->draw(*(gameAssets->wallBar1));
 	window->draw(*(gameAssets->wallBar2));
+	window->draw(*(gameAssets->wallBar3));
 	window->draw(*(gameAssets->player));
 	window->display();
 }
