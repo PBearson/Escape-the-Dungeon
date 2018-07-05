@@ -15,7 +15,7 @@ Game_Assets::Game_Assets(sf::RenderWindow* window)
 	sf::Vector2f groundSize(window->getSize().x, window->getSize().y/1.5);
 	ground = new sf::RectangleShape(groundSize);
 	ground->setPosition(0, window->getSize().y - ground->getSize().y);
-	ground->setFillColor(sf::Color(65, 43, 21));
+	ground->setFillColor(sf::Color(55, 43, 21));
 
 	// Window sprite
 	int wallWindowOrigin = rd() % window->getSize().x;
