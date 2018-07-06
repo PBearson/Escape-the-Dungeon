@@ -2,6 +2,7 @@
 #include "primary_assets.h"
 #include "game_assets.h"
 #include "player_logic.h"
+#include "weapons_logic.h"
 #include <iostream>
 using namespace std;
 
@@ -21,6 +22,7 @@ sf::RenderWindow* window;
 Primary_Assets* primaryAssets;
 Game_Assets* gameAssets;
 Player_Logic* playerLogic;
+Weapons_Logic* weaponsLogic;
 
 // Set game state
 Primary_Assets::Game_State currentState = Primary_Assets::Game_State::IN_GAME;
@@ -184,6 +186,9 @@ int main()
 
 	// Load player logic
 	playerLogic = new Player_Logic();
+
+	// Load weapons logic
+	weaponsLogic = new Weapons_Logic();
 	
 	// Set clock interval
 	sf::Clock clock;

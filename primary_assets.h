@@ -16,5 +16,16 @@ class Primary_Assets
 			IN_PAUSE_MENU
 		};
 
+		enum Player_Weapon_Options
+		{
+			FIST,
+			ARROW,
+			SWORD,
+			AXE,
+			FIREBALLS,
+			LASER,
+			BEAR_KNUCKLES
+		};
+
 		Primary_Assets();
 };
