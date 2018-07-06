@@ -11,7 +11,7 @@ class Player_Logic
 		float attackMoveSpeed = 5;
 		float attackDamage = 2;
 		int attackDelta = 0;
-		int attackSpeed = 60;
+		int attackSpeed = 20;
 		bool attacking = false;
 		bool movingLeft = false;
 		bool movingRight = false;

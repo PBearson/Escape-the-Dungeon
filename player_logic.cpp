@@ -32,6 +32,13 @@ void Player_Logic::updateWeapons()
 {
 	for(int i = 0; i < bullets.size(); i++)
 	{
-		// TODO
+		bullets[i]->lifetime--;
+		if(bullets[i]->lifetime <= 0)
+		{
+			delete bullets[i]->weaponShape;
+			delete bullets[i];
+			bullets.erase(bullets.begin() + i);
+			continue;
+		}
 	}
 }

@@ -21,7 +21,7 @@ Player_Weapon::Player_Weapon(Primary_Assets::Player_Weapon_Options w, sf::Vector
 
 void Player_Weapon::setupFist()
 {
-	lifetime = 60;
+	lifetime = 20;
 	damage *= 0.25;
 	weaponShape = new sf::RectangleShape(sf::Vector2f(10, 10));
 	weaponShape->setPosition(dir);
