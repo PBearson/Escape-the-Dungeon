@@ -7,6 +7,7 @@ class Game_Assets
 		sf::RectangleShape* background;
 		sf::RectangleShape* player;
 		sf::RectangleShape* ground;
+		sf::RectangleShape* ceiling;
 		sf::RectangleShape* wallLeft;
 		sf::RectangleShape* wallRight;
 		sf::RectangleShape* wallTop;

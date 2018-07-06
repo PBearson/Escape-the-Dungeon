@@ -9,13 +9,13 @@ class Player_Weapon
 	public:
 		Primary_Assets::Player_Weapon_Options weapon;
 		sf::RectangleShape* weaponShape;
-		sf::Vector2f* dir;
+		sf::Vector2f dir;
 		float damage;
 		float moveSpeed;
 		int lifetime;
 		bool alive = true;
 		
-		Player_Weapon(Primary_Assets::Player_Weapon_Options, sf::Vector2f*, float, float);
+		Player_Weapon(Primary_Assets::Player_Weapon_Options, sf::Vector2f, float, float);
 
 	private:
 		void setupFist();

@@ -17,6 +17,11 @@ Game_Assets::Game_Assets(sf::RenderWindow* window)
 	ground->setPosition(0, window->getSize().y - ground->getSize().y);
 	ground->setFillColor(sf::Color(55, 43, 21));
 
+	// Ceiling
+	sf::Vector2f ceilingSize(window->getSize().x, 30);
+	ceiling = new sf::RectangleShape(ceilingSize);
+	ceiling->setFillColor(sf::Color(25, 25, 25));
+
 	// Window sprite
 	int wallWindowOrigin = rd() % window->getSize().x;
 	sf::Vector2f wallWindowSize(rd() % 40 + 90, rd() % 40 + 90);

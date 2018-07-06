@@ -156,9 +156,12 @@ void handleGameLogic()
 	if(playerLogic->attackDelta > 0) playerLogic->attackDelta--;
 	else if(playerLogic->attacking)
 	{
-		cout << "Shoot" << endl;
+		playerLogic->attack(gameAssets->player->getPosition());
 		playerLogic->attackDelta = playerLogic->attackSpeed;
 	}
+
+	// Handle attacks
+	playerLogic->updateWeapons();
 }
 
 // Handle window logic while in main game
@@ -174,7 +177,9 @@ void handleGameView()
 	window->draw(*(gameAssets->wallBar1));
 	window->draw(*(gameAssets->wallBar2));
 	window->draw(*(gameAssets->wallBar3));
+	window->draw(*(gameAssets->ceiling));
 	window->draw(*(gameAssets->player));
+	for(Player_Weapon* bullet : playerLogic->bullets) window->draw(*(bullet->weaponShape));
 	window->display();
 }
 

@@ -1,12 +1,15 @@
 #pragma once
 #include "primary_assets.h"
 #include "player_weapon.h"
+#include <SFML/Graphics.hpp>
 #include <vector>
 
 class Player_Logic
 {
 	public:
-		int moveSpeed = 3;
+		float moveSpeed = 3;
+		float attackMoveSpeed = 5;
+		float attackDamage = 2;
 		int attackDelta = 0;
 		int attackSpeed = 60;
 		bool attacking = false;
@@ -15,9 +18,12 @@ class Player_Logic
 		bool movingUp = false;
 		bool movingDown = false;
 
-		Primary_Assets::Player_Weapon_Options currentWeapon = Primary_Assets::Player_Weapon_Options::FIST;
+		Primary_Assets::Player_Weapon_Options currentWeapon;
 
 		std::vector<Player_Weapon*> bullets;
 
 		Player_Logic();
+
+		void attack(sf::Vector2f);
+		void updateWeapons();
 };
