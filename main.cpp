@@ -2,7 +2,6 @@
 #include "primary_assets.h"
 #include "game_assets.h"
 #include "player_logic.h"
-#include "weapons_logic.h"
 #include <iostream>
 using namespace std;
 
@@ -22,7 +21,6 @@ sf::RenderWindow* window;
 Primary_Assets* primaryAssets;
 Game_Assets* gameAssets;
 Player_Logic* playerLogic;
-Weapons_Logic* weaponsLogic;
 
 // Set game state
 Primary_Assets::Game_State currentState = Primary_Assets::Game_State::IN_GAME;
@@ -90,8 +88,11 @@ void handleMainMenuView()
 // Handle window events while in main game
 void handleGameEvents(sf::Event e)
 {
+	// Establish events
 	int keyPressed = sf::Event::KeyPressed;
 	int keyReleased = sf::Event::KeyReleased;
+	int mousePressed = sf::Event::MouseButtonPressed;
+	int mouseReleased = sf::Event::MouseButtonReleased;
 	
 	// Movement values
 	int movedRightD = sf::Keyboard::D, movedRight = sf::Keyboard::Right;
@@ -108,6 +109,10 @@ void handleGameEvents(sf::Event e)
 	if(e.key.code == movedLeft || e.key.code == movedLeftA) playerLogic->movingLeft = pressing;
 	if(e.key.code == movedUp || e.key.code == movedUpW) playerLogic->movingUp = pressing;
 	if(e.key.code == movedDown || e.key.code == movedDownS) playerLogic->movingDown = pressing;
+
+	// Check shooting
+	if(e.type == mousePressed) playerLogic->attacking = true;	
+	if(e.type == mouseReleased) playerLogic->attacking = false;
 }
 
 // Handle window logic while in main game
@@ -131,16 +136,28 @@ void handleGameLogic()
 	sf::Vector2f groundPosition = gameAssets->ground->getPosition();
 	sf::Vector2f groundSize = gameAssets->ground->getSize();
 
-	//Check Top
+	// Check Top
 	if(playerPosition.y + playerSize.y < groundPosition.y)
 	{
 		gameAssets->player->setPosition(playerPosition.x, groundPosition.y - playerSize.y);
 	}
 
-	//Check bottom
+	// Check bottom
 	if(playerPosition.y + playerSize.y > groundPosition.y + groundSize.y)
 	{
 		gameAssets->player->setPosition(playerPosition.x, groundPosition.y + groundSize.y - playerSize.y);
+	}
+
+	// Check left TODO
+	
+	// Check right TODO
+	
+	// Check shooting
+	if(playerLogic->attackDelta > 0) playerLogic->attackDelta--;
+	else if(playerLogic->attacking)
+	{
+		cout << "Shoot" << endl;
+		playerLogic->attackDelta = playerLogic->attackSpeed;
 	}
 }
 
@@ -187,9 +204,6 @@ int main()
 	// Load player logic
 	playerLogic = new Player_Logic();
 
-	// Load weapons logic
-	weaponsLogic = new Weapons_Logic();
-	
 	// Set clock interval
 	sf::Clock clock;
 	float timer = 0;
