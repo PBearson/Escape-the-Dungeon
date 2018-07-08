@@ -5,13 +5,13 @@ Player_Logic::Player_Logic()
 	currentWeapon = Primary_Assets::Player_Weapon_Options::FIST;
 }
 
-void Player_Logic::attack(sf::Vector2f src)
+void Player_Logic::attack(sf::Vector2f src, sf::Vector2i dir)
 {
 	switch(currentWeapon)
 	{
 		case Primary_Assets::Player_Weapon_Options::FIST:
 		{
-			Player_Weapon* newFist = new Player_Weapon(currentWeapon, src, attackDamage, attackMoveSpeed);
+			Player_Weapon* newFist = new Player_Weapon(currentWeapon, src, dir, attackDamage, attackMoveSpeed);
 			bullets.push_back(newFist);
 			break;
 		}
@@ -32,6 +32,7 @@ void Player_Logic::updateWeapons()
 {
 	for(int i = 0; i < bullets.size(); i++)
 	{
+		bullets[i]->updateWeapon();
 		bullets[i]->lifetime--;
 		if(bullets[i]->lifetime <= 0)
 		{

@@ -156,7 +156,10 @@ void handleGameLogic()
 	if(playerLogic->attackDelta > 0) playerLogic->attackDelta--;
 	else if(playerLogic->attacking)
 	{
-		playerLogic->attack(gameAssets->player->getPosition());
+		sf::Vector2f playerPosition = gameAssets->player->getPosition();
+		sf::Vector2f playerSize = gameAssets->player->getSize();
+		sf::Vector2f playerCenter(playerPosition.x + playerSize.x/2, playerPosition.y + playerSize.y/2);
+		playerLogic->attack(playerCenter, sf::Mouse::getPosition(*window));
 		playerLogic->attackDelta = playerLogic->attackSpeed;
 	}
 

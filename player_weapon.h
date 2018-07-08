@@ -9,15 +9,19 @@ class Player_Weapon
 	public:
 		Primary_Assets::Player_Weapon_Options weapon;
 		sf::RectangleShape* weaponShape;
-		sf::Vector2f dir;
+		sf::Vector2f src;
+		sf::Vector2i dir;
 		float damage;
 		float moveSpeed;
 		int lifetime;
 		bool alive = true;
 		
-		Player_Weapon(Primary_Assets::Player_Weapon_Options, sf::Vector2f, float, float);
+		Player_Weapon(Primary_Assets::Player_Weapon_Options, sf::Vector2f, sf::Vector2i, float, float);
+		void updateWeapon();
 
 	private:
 		void setupFist();
 		void setupArrow();
+		void updateFist();
+		void updateArrow();
 };
